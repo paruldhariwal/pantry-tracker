@@ -9,7 +9,7 @@ const SignIn = () => {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [isSignUp,setIsSignUp]=useState(false);
-  const handleSignIn = async () => {
+  const SignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;

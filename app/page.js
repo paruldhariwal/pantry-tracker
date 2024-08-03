@@ -9,9 +9,9 @@ import {
   TextField,
 } from "@mui/material";
 //
-import { firestore,auth } from "../firebase";
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import SignIn from '../signIn';
+import { firestore} from "../firebase";
+// import { onAuthStateChanged, signOut } from 'firebase/auth';
+// import SignIn from '../signIn';
 import {collection,query,doc,getDocs,getDoc,deleteDoc,setDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { green } from "@mui/material/colors";
@@ -22,14 +22,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [itemName, setItemName] = useState("");
   const [search,setSearch]=useState("");
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
 
   const updatePantry = async () => {
     const snapshot = query(collection(firestore, "pantry"));
@@ -78,18 +71,8 @@ export default function Home() {
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-    } catch (error) {
-      console.error('Sign Out Error:', error.message);
-    }
-  };
 
-  if (!user) {
-    return <SignIn />;
-  }
+ 
 
   return (
     <Box sx={{  
@@ -110,14 +93,7 @@ export default function Home() {
         gap={2}
         
       >
-        <Button
-          variant="contained"
-          onClick={handleSignOut}
-          sx={{ backgroundColor: "#56595d", border: "1px", fontFamily: "'Roboto', sans-serif", 
-            fontWeight: 400, textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
-        >
-          Sign Out
-        </Button>
+   
         <Modal open={open} onClose={handleClose}>
           <Box
             position="absolute"
