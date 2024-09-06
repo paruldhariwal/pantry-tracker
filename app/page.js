@@ -8,10 +8,9 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-//
+
 import { firestore} from "../firebase";
-// import { onAuthStateChanged, signOut } from 'firebase/auth';
-// import SignIn from '../signIn';
+
 import {collection,query,doc,getDocs,getDoc,deleteDoc,setDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { green } from "@mui/material/colors";
