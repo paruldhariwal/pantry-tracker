@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Modal,
@@ -10,13 +9,14 @@ import {
 } from "@mui/material";
 
 import { firestore} from "../firebase";
-
+import {UserButton} from "@clerk/nextjs";
 import {collection,query,doc,getDocs,getDoc,deleteDoc,setDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { green } from "@mui/material/colors";
 
 
 export default function Home() {
+  
   const [pantry, setPantry] = useState([]);
   const [open, setOpen] = useState(false);
   const [itemName, setItemName] = useState("");
@@ -74,6 +74,7 @@ export default function Home() {
  
 
   return (
+    
     <Box sx={{  
         backgroundColor: "white",
         backgroundImage: `url('/image.jpg')`,
@@ -82,6 +83,7 @@ export default function Home() {
         backgroundPosition: 'center',
         height: '100vh',
         width: '100vw'}}>
+          
       <Box
         width="100vw"
         height="100vh"
@@ -243,5 +245,6 @@ export default function Home() {
         </Box>
       </Box>
     </Box>
+    
   );
 }
